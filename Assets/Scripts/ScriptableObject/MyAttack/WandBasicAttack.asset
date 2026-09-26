@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e1b357140dd334d821599eabe159ea, type: 3}
+  m_Name: WandBasicAttack
+  m_EditorClassIdentifier: Assembly-CSharp::RangeAttack
+  attackPower: 3
+  scaleDiffer: 1.67
+  attackPrefab: {fileID: 7211414597602986803, guid: 587f5306249c704448ae030675a25c9f, type: 3}
+  spendHealth: 1
+  requireHp: 5
+  attackCooldown: 0.3
+  force: 500
