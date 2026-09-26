@@ -130,7 +130,7 @@ public class Character : MonoBehaviour, IDamageable
         if (inputActions.Player.Jump.WasPressedThisFrame() && isGround())
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            print("Jump");
+            // print("Jump");
         }
     }
     public void TakeDamage(float damage, bool fatal = true)
@@ -141,29 +141,37 @@ public class Character : MonoBehaviour, IDamageable
             return;
         }
 
-        if (isIFrame())
-        {
-            return;
-        }
-
         //case if self-damaage
-        if (!fatal && health.CurrentHealth - damage <= 1)
+        if (!fatal)
         {
-            float newDamage = health.CurrentHealth - 1;
-            if (newDamage < 0)
+            if (health.CurrentHealth - damage <= 1)
             {
-                newDamage = 0;
+                float newDamage = health.CurrentHealth - 1;
+                if (newDamage < 0)
+                {
+                    newDamage = 0;
+                }
+                health?.ReduceHealth(newDamage);
             }
-            health?.ReduceHealth(newDamage);
+            else
+            {
+                health?.ReduceHealth(damage);
+            }
             return;
         }
-        //default case
-        health?.ReduceHealth(damage);
-        GetIFrame();
 
-        if (health.IsDead())
+        //default case
+        else if (fatal)
         {
-            Death();
+            if (isIFrame()) return;
+
+            health?.ReduceHealth(damage);
+            GetIFrame();
+
+            if (health.IsDead())
+            {
+                Death();
+            }
         }
     }
 
